@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1032973399509",
+    "project_id": "jee-mock-test-series",
+    "storage_bucket": "jee-mock-test-series.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032973399509:android:b2d3fe04a7d9cb06a3f95c",
+        "android_client_info": {
+          "package_name": "com.farfromcampus.jeemocktestseries"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032973399509-oibl80rntmoe8vj9su6ee3q2nvii9b93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYGguM0aiDM8RU_27l3Wv92ljZgLBUSfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032973399509-oibl80rntmoe8vj9su6ee3q2nvii9b93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
