@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import com.farfromcampus.jeemocktestseries.daos.userdao
+import com.farfromcampus.jeemocktestseries.models.Users
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -101,11 +103,11 @@ class signinactivity : AppCompatActivity() {
     private fun updateUI(firebaseUser: FirebaseUser?) {
         if(firebaseUser != null) {
 
-            val user = User(firebaseUser.uid, firebaseUser.displayName, firebaseUser.photoUrl.toString())
-            val usersDao = UserDao()
-            usersDao.addUser(user)
+            val user = Users(firebaseUser.uid, firebaseUser.displayName.toString(), firebaseUser.photoUrl.toString())
+            val usersDao = userdao()
+            usersDao.adduser(user)
 
-            val mainActivityIntent = Intent(this, MainActivity::class.java)
+            val mainActivityIntent = Intent(this, homepage::class.java)
             startActivity(mainActivityIntent)
             finish()
         } else {
