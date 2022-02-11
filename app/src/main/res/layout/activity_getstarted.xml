@@ -6,4 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".getstarted">
 
+    <Button
+        android:id="@+id/getstartedbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="getstarted"
+        android:text="@string/get_started"
+        android:textColorLink="#970303"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.412"
+        app:rippleColor="#DC1D1D"
+        app:strokeColor="#E12222" />
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="399dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="cursive"
+        android:text="@string/welcome_to_jee_advanced_test_series"
+        android:textColor="#4A8307"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/by_farfromcampus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome" />
 </androidx.constraintlayout.widget.ConstraintLayout>

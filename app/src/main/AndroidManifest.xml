@@ -10,6 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JEEMockTestSeries">
         <activity
+            android:name=".testactivity"
+            android:exported="false" />
+        <activity
+            android:name=".mocktestactivity"
+            android:exported="false" />
+        <activity
+            android:name=".homepage"
+            android:exported="false"
+            android:label="@string/title_activity_homepage"
+            android:theme="@style/Theme.JEEMockTestSeries.NoActionBar" />
+        <activity
             android:name=".getstarted"
             android:exported="false" />
         <activity

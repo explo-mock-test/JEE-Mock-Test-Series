@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">JEE Mock Test Series</string>
+    <string name="title_activity_homepage">homepage</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="default_web_client_id">1032973399509-oibl80rntmoe8vj9su6ee3q2nvii9b93.apps.googleusercontent.com</string>
+    <string name="welcome_to_jee_advanced_test_series">Welcome To JEE Advanced Test Series</string>
+    <string name="by_farfromcampus">by FarFromCampus</string>
+    <string name="get_started">Get Started</string>
 </resources>
