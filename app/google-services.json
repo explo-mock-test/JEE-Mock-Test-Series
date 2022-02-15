@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "355598103153",
+    "project_id": "mock-test-application-b1e91",
+    "storage_bucket": "mock-test-application-b1e91.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355598103153:android:9b152393bfb2fc6ef721d0",
+        "android_client_info": {
+          "package_name": "com.farfromcampus.jeemocktestseries"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355598103153-q9gfplpci8573k8ml3tjcr9brm3rqtvm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.farfromcampus.jeemocktestseries",
+            "certificate_hash": "2c05455f7e45a6f58ff521f220adcd9c09234f66"
+          }
+        },
+        {
+          "client_id": "355598103153-v80gej4rhahoeb4vmdd7et20mnqte7cm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9cLWI7d50r3bEFPu7c82XAttwH67Ere8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355598103153-v80gej4rhahoeb4vmdd7et20mnqte7cm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
