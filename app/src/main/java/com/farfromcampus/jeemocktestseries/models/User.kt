@@ -1,5 +1,5 @@
 package com.farfromcampus.jeemocktestseries.models
-
-class User(val user_id:String="",
-           val Name:String="",
-           val image_url:String?)
+//
+//class User(val uid: String = "",
+//           val displayName: String? = "",
+//           val imageUrl: String = "")

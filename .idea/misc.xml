@@ -3,8 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/JEEMockTestSeries/app/src/main/res/drawable/google_button.xml" value="0.225" />
+        <entry key="..\:/JEEMockTestSeries/app/src/main/res/drawable/ic_baseline_person_pin_24.xml" value="0.225" />
         <entry key="..\:/JEEMockTestSeries/app/src/main/res/layout/activity_getstarted.xml" value="0.18432971014492755" />
-        <entry key="..\:/JEEMockTestSeries/app/src/main/res/layout/activity_signin.xml" value="0.22056159420289856" />
+        <entry key="..\:/JEEMockTestSeries/app/src/main/res/layout/activity_mocktest.xml" value="0.264" />
+        <entry key="..\:/JEEMockTestSeries/app/src/main/res/layout/activity_ockreview.xml" value="0.264" />
+        <entry key="..\:/JEEMockTestSeries/app/src/main/res/layout/activity_signin.xml" value="0.2" />
+        <entry key="..\:/JEEMockTestSeries/app/src/main/res/layout/activity_solution.xml" value="0.264" />
+        <entry key="..\:/JEEMockTestSeries/app/src/main/res/layout/activity_submission.xml" value="0.24592391304347827" />
+        <entry key="..\:/JEEMockTestSeries/app/src/main/res/layout/activity_submition.xml" value="0.17291666666666666" />
+        <entry key="..\:/JEEMockTestSeries/app/src/main/res/layout/sol_view.xml" value="0.264" />
       </map>
     </option>
   </component>

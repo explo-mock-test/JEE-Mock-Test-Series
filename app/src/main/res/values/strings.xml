@@ -1,4 +1,26 @@
 <resources>
     <string name="app_name">JEE Mock Test Series</string>
     <string name="get_started">Get Started</string>
+    <string name="default_web_id">355598103153-q9gfplpci8573k8ml3tjcr9brm3rqtvm.apps.googleusercontent.com</string>
+    <string name="save_and_next">Save And Next</string>
+    <string name="skip">Skip</string>
+    <string name="chemistry">chemistry</string>
+    <string name="textview">TextView</string>
+    <string name="mark_for_review">mark for review</string>
+    <string name="physics">physics</string>
+    <string name="mathemactics">Mathemactics</string>
+    <string name="submit">Submit</string>
+    <string name="mock_test_x">Mock Test X</string>
+    <string name="start">START</string>
+    <string name="radiobutton">RadioButton</string>
+    <string name="view_solution">View Solution</string>
+    <string name="home">Home</string>
+    <string name="_02_29_30">02:29:30</string>
+    <string name="question_x">Question X</string>
+    <string name="find_the_value_of_x_in_the_given_figure">Find The Value of x in the given figure:-</string>
+    <string name="a">a</string>
+    <string name="b">b</string>
+    <string name="c">c</string>
+    <string name="d">d</string>
+    <string name="e">e</string>
 </resources>

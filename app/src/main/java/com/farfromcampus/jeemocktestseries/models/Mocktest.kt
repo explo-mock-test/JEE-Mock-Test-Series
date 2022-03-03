@@ -1,6 +1,6 @@
 package com.farfromcampus.jeemocktestseries.models
 
-class Mocktest(val ques_id:List<Int>,
-              val mock_id:Int,
-              val test_number:Int
+class Mocktest(var ques_ids:ArrayList<String> = ArrayList(),
+              var mock_id:String = "",
+              var test_number:Int = -1
 )

@@ -15,7 +15,7 @@ class Aspirantdao {
     fun addaspirant(student: Aspirant?) {
         student?.let {
             GlobalScope.launch(Dispatchers.IO) {
-                aspirantCollection.document(student.std_id).set(it)
+                aspirantCollection.document(student.name).set(it)
             }
         }
     }
