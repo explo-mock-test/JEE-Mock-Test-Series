@@ -13,24 +13,20 @@ import com.farfromcampus.jeemocktestseries.models.Test
 
 
 class mocktestActivity : AppCompatActivity() {
-    val test = intent.getSerializableExtra("test") as Test
-
-    var Answers: ArrayList<Char> = ArrayList()
     private var marked: ArrayList<String> = ArrayList()
+    var test = Test()
+    var chkoption:Array<Int> = Array(100){-1}
+    val mp = mapOf(0 to "a" ,1 to "b",2 to "c" ,3 to "d" ,4 to "e")
 
     private var i: Int = 0
-
-    private var ques_num = findViewById<TextView>(R.id.question_number)
-    var ques = findViewById<TextView>(R.id.question)
-    var ques_img = findViewById<ImageView>(R.id.Question_image)
-    var Radiooptions = findViewById<RadioGroup>(R.id.options)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mocktest)
+        test = intent.getSerializableExtra("gettest") as Test
 
         val countTime: TextView = findViewById(R.id.countTime)
-        object : CountDownTimer(3600*60*3000, 1000) {
+        object : CountDownTimer(60000*180, 1000) {
             @SuppressLint("SetTextI18n")
             override fun onTick(millisUntilFinished: Long) {
                 var diff = millisUntilFinished
@@ -53,15 +49,20 @@ class mocktestActivity : AppCompatActivity() {
                 submition()
             }
         }.start()
+        changeQuestion(0)
     }
 
     private fun changeQuestion(x: Int) {
         i = x
-            Radiooptions.clearCheck()
-            ques_num.text = x.toString()
-            ques.text = test.Set[x].question
+            findViewById<RadioGroup>(R.id.options).clearCheck()
+            findViewById<TextView>(R.id.question_number).text ="Question  ${x+1}"
+            findViewById<TextView>(R.id.question).text = test.Set[x].question
+
+            if(test.AnswerSheet[x] != " "){
+                findViewById<RadioGroup>(R.id.options).check(chkoption[x])
+            }
             if (test.Set[x].image.isNotEmpty()) {
-                Glide.with(this@mocktestActivity).load(test.Set[x].image).into(ques_img)
+                Glide.with(this@mocktestActivity).load(test.Set[x].image).into(findViewById(R.id.Question_image))
             }
 
             findViewById<RadioButton>(R.id.a).text = test.Set[x].option[0]
@@ -76,14 +77,20 @@ class mocktestActivity : AppCompatActivity() {
         }
 
     fun saveAndNext(view: View) {
-        val x = Radiooptions.checkedRadioButtonId
-        if (x != -1) {
-            Answers[i] = x.toChar()
-            i++
+        val x = findViewById<RadioGroup>(R.id.options).checkedRadioButtonId
+        val checkedOption = findViewById<RadioButton>(x)
+        var idd = ""
+        chkoption[i]=x
+
+        if(x != -1) { for (k in 0..4) { if (test.Set[i].option[k] == checkedOption.text) { idd = mp[k]!! } } }//???Alert
+
+        if (x != -1 && test.AnswerSheet[i]!= idd) {
+            test.AnswerSheet.set(i,idd)
         }
         if(x == test.Set.size-1){
             submit(view)
         }
+        i++
         changeQuestion(i)
     }
 
@@ -115,11 +122,9 @@ class mocktestActivity : AppCompatActivity() {
     }
 
     fun submition(){
-        val intent = Intent(this, submission_Activity::class.java)
-        intent.putExtra("Answers",Answers)
-        intent.putExtra("test",test)
-
-        startActivity(intent)
+        val intent1 = Intent(this, submission_Activity::class.java)
+        intent1.putExtra("gettest",test)
+        startActivity(intent1)
     }
 
     fun submit(view: View) {

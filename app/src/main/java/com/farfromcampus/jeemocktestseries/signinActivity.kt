@@ -13,8 +13,6 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-
-
 @Suppress("DEPRECATION")
 class signinActivity : AppCompatActivity() {
 
@@ -23,14 +21,14 @@ class signinActivity : AppCompatActivity() {
     var firebaseAuth= FirebaseAuth.getInstance()
           //val signInButton=findViewById<SignInButton>(R.id.signInButton)
           //val progressBar=findViewById<ProgressBar>(R.id.progressBar)
-          val Signin=findViewById<Button>(R.id.Signin)
+//          val Signin=findViewById<Button>(R.id.Signin)
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_signin)
 
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_id))
+                .requestIdToken(getString(R.string.My_id))
                 .requestEmail()
                 .build()
             // getting the value of gso inside the GoogleSigninClient
@@ -38,17 +36,11 @@ class signinActivity : AppCompatActivity() {
             // initialize the firebaseAuth variable
             firebaseAuth= FirebaseAuth.getInstance()
 
-            Signin.setOnClickListener{
+            findViewById<Button>(R.id.Signin).setOnClickListener{
                 signInGoogle()
             }
 
         }
-
-
-
-
-
-
 
     // signInGoogle() function
     private  fun signInGoogle(){

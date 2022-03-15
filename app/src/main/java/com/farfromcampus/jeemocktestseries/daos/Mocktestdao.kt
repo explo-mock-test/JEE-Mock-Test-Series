@@ -15,7 +15,7 @@ class Mocktestdao {
     fun addMockTest(mock: Mocktest) {
         mock?.let {
             GlobalScope.launch(Dispatchers.IO) {
-                mocktestCollection.document(mock.mock_id.toString()).set(it)
+                mocktestCollection.document(mock.mock_id).set(it)
             }
         }
     }

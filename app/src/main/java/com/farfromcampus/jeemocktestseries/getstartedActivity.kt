@@ -11,7 +11,7 @@ class getstartedActivity : AppCompatActivity() {
         setContentView(R.layout.activity_getstarted)
 
         findViewById<Button>(R.id.getstarted).setOnClickListener {
-            val intent = Intent(this,mocktestActivity::class.java)
+            val intent = Intent(this,signinActivity::class.java)
             startActivity(intent)
         }
     }

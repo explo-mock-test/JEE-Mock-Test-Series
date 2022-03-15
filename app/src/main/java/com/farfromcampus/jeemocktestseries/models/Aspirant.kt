@@ -1,9 +1,10 @@
 package com.farfromcampus.jeemocktestseries.models
 
 class Aspirant(
-              val name:String,
+              val name:String="",
+
               val attempt_tests:ArrayList<Int> = ArrayList(),
-              val correct_answer:Int,
-              val wrong_answer:Int,
+              val Accuracy:Int=0,
+              val wrong_answer:Int=0,
               val bookmarks:ArrayList<Int> = ArrayList()
 )

@@ -6,6 +6,7 @@ plugins {
 
 android {
     compileSdk 31
+    //added
 
     defaultConfig {
         applicationId "com.farfromcampus.jeemocktestseries"
@@ -16,7 +17,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+//    buildFeatures{
+//        dataBinding true
+//    }
     buildTypes {
         release {
             minifyEnabled false
@@ -33,11 +36,16 @@ android {
 }
 
 dependencies {
+    //ADDED FOR MATHS VIEW
+//    implementation 'com.github.derysudrajat:math-view:1.0.1'
     //Added by gaurav
+
+
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
 
     implementation 'com.github.bumptech.glide:glide:4.13.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
     /* coroutines support for firebase operations */

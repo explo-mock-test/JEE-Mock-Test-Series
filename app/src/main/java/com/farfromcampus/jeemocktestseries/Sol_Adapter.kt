@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.farfromcampus.jeemocktestseries.models.Test
+import com.farfromcampus.jeemocktestseries.models.Questions
 
-class Sol_Adapter(private val test:Test):RecyclerView.Adapter<SolutionViewHolder>(){
+class Sol_Adapter(val test:ArrayList<Questions>):RecyclerView.Adapter<SolutionViewHolder>(){
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SolutionViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.sol_view,parent,false)
         val viewholder = SolutionViewHolder(view)
@@ -21,26 +22,22 @@ class Sol_Adapter(private val test:Test):RecyclerView.Adapter<SolutionViewHolder
         return viewholder
     }
 
-
-    override fun onBindViewHolder(holder: SolutionViewHolder, position: Int) {
-
-                holder.ques_num.text = "Question ${position}"
-                holder.ques_text.text = test.Set[position].question
-                holder.answer.text = test.Set[position].answer.toString()
-                holder.sol_text.text = test.Set[position].solution
-                if (test.Set[position].image.isNotEmpty()) {
-                    Glide.with(holder.ques_img.context).load(test.Set[position].image).into(holder.ques_img)
-                }
-                if (test.Set[position].answer_img.isNotEmpty()) {
-                    Glide.with(holder.sol_img.context).load(test.Set[position].image).into(holder.ques_img)
-                }
-        }
-
-
     override fun getItemCount(): Int {
-        return test.Set.size
+        return test.size
     }
 
+    override fun onBindViewHolder(holder: SolutionViewHolder, position: Int) {
+                holder.ques_num.text = "Question ${position+1}"
+                holder.ques_text.text = test[position].question
+                holder.answer.text = "Answer:- " +  test[position].answer.toString()
+                holder.sol_text.text = test[position].solution
+                if (test[position].image.isNotEmpty()) {
+                    Glide.with(holder.ques_img.context).load(test[position].image).into(holder.ques_img)
+                }
+                if (test[position].answer_img.isNotEmpty()) {
+                    Glide.with(holder.sol_img.context).load(test[position].image).into(holder.ques_img)
+                }
+        }
 }
 class SolutionViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
     val ques_num = itemView.findViewById<TextView>(R.id.question_num)

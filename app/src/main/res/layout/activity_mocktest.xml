@@ -27,8 +27,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="557dp"
+        android:layout_width="413dp"
+        android:layout_height="399dp"
         app:layout_constraintBottom_toTopOf="@+id/skip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +52,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/find_the_value_of_x_in_the_given_figure" />
+
+<!--            <io.github.derysudrajat.mathview.MathView-->
+<!--                android:id="@+id/question"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"/>-->
 
             <ImageView
                 android:id="@+id/Question_image"
