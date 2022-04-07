@@ -28,51 +28,11 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-//        var mock = Mocktest()
-//        var ids:ArrayList<String> = ArrayList(30)
-//        mock.mock_id = "testingfirstmocktest"
-//        for( i in 0..29){
-//            ids.add("ques_idx_" + (i+1).toString())
-//        }
-//        mock.ques_ids = ids
-//        mock.test_number = 1
-//        Mocktestdao().addMockTest(mock)
-
-//        var ques = Questions()
-
-//        // 24
-//        ques.ques_id = "ques_idx_24"
-//        ques.question = ""
-//        ques.answer = ""
-//        ques.image = ""
-//        ques.solution = ""
-//        ques.subject_id = 2
-//        ques.answer_img = ""
-//
-//        ques.option.add("")
-//        ques.option.add("")
-//        ques.option.add("")
-//        ques.option.add("")
-//        ques.option.add("")
-
-
         val mock_id = "testingfirstmocktest"
         val intent =Intent(this,ockreviewActivity::class.java)
         findViewById<Button>(R.id.button).setOnClickListener {
             intent.putExtra("mock_id",mock_id)
             startActivity(intent)
         }
-
-
     }
-
-//    override fun onStart() {
-//        super.onStart()
-//        val mock_id = "testingfirstmocktest"
-//        GlobalScope.launch(Dispatchers.Main) {
-//            val quesid = Mocktestdao().getMockTestById(mock_id).await().toObject(Mocktest::class.java)!!
-//            findViewById<TextView>(R.id.TestingGet).text = quesid.ques_ids.size.toString()
-//
-//        }
-//    }
 }

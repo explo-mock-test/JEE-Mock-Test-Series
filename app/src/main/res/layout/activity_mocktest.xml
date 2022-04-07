@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".mocktestActivity">
+<androidx.constraintlayout.widget.ConstraintLayout
+        tools:context=".mocktestActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        >
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:onClick="submit"
         android:text="@string/submit"
+        app:layout_constraintEnd_toStartOf="@+id/countTime"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,20 +26,23 @@
         android:id="@+id/countTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
         android:hint="@string/_02_29_30"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="413dp"
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
         android:layout_height="399dp"
-        app:layout_constraintBottom_toTopOf="@+id/skip"
+        app:layout_constraintBottom_toTopOf="@id/buttonlayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/submit">
+        app:layout_constraintTop_toBottomOf="@+id/submit"
+        app:layout_constraintVertical_bias="0.06999999">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,16 +57,20 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/question"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/find_the_value_of_x_in_the_given_figure" />
+            <!--                <WebView-->
+            <!--                    android:id=""-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    tools:ignore="WebViewLayout" />-->
 
-<!--            <io.github.derysudrajat.mathview.MathView-->
-<!--                android:id="@+id/question"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"/>-->
+
+            <com.agog.mathdisplay.MTMathView
+                android:id="@+id/question"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:scrollbarSize="25dp" />
 
             <ImageView
                 android:id="@+id/Question_image"
@@ -72,105 +86,108 @@
                 <RadioButton
                     android:id="@+id/a"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/a" />
+                    android:layout_height="wrap_content" />
 
                 <RadioButton
                     android:id="@+id/b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/b" />
+
+                    />
 
                 <RadioButton
                     android:id="@+id/c"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/c" />
+                    android:layout_height="wrap_content" />
 
                 <RadioButton
                     android:id="@+id/d"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/d" />
+                    android:layout_height="wrap_content" />
 
                 <RadioButton
                     android:id="@+id/e"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/e" />
+                    android:layout_height="wrap_content" />
 
             </RadioGroup>
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/saveandnext"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="saveAndNext"
-        android:text="@string/save_and_next"
-        app:layout_constraintBaseline_toBaselineOf="@+id/skip"
-        app:layout_constraintEnd_toEndOf="parent" />
 
-
-    <Button
-        android:id="@+id/skip"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/buttonlayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:onClick="skip"
-        android:text="@string/skip"
-        app:layout_constraintBottom_toTopOf="@+id/chemistry"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/chemistry"
-        style="@style/Widget.MaterialComponents.TimePicker.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="chemistry"
-        android:text="@string/chemistry"
-        app:layout_constraintBaseline_toBaselineOf="@+id/maths"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/markforreview"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:onClick="markForReview"
-        android:text="@string/mark_for_review"
-        app:layout_constraintBaseline_toBaselineOf="@+id/skip"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/physics"
-        style="@style/Widget.MaterialComponents.TimePicker.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:onClick="physics"
-        android:text="@string/physics"
-        app:layout_constraintBaseline_toBaselineOf="@+id/chemistry"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/maths"
-        style="@style/Widget.MaterialComponents.TimePicker.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="maths"
-        android:text="@string/mathemactics"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/skip"
+                style="@style/Widget.AppCompat.Button.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="skip"
+                android:text="PREVIOUS" />
+
+            <Button
+                android:id="@+id/saveandnext"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="saveAndNext"
+                android:text="NEXT" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/chemistry"
+                style="@style/Widget.MaterialComponents.TimePicker.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:onClick="chemistry"
+                android:text="@string/chemistry" />
+
+            <Button
+                android:id="@+id/physics"
+                style="@style/Widget.MaterialComponents.TimePicker.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:onClick="physics"
+                android:text="@string/physics" />
+
+            <Button
+                android:id="@+id/maths"
+                style="@style/Widget.MaterialComponents.TimePicker.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="maths"
+                android:paddingHorizontal="3dp"
+                android:text="@string/mathemactics" />
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

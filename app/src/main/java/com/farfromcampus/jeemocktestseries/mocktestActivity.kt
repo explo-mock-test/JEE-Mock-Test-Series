@@ -6,9 +6,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Half.toFloat
 import android.view.View
+import android.webkit.WebView
 import android.widget.*
+import com.agog.mathdisplay.MTMathView
+//import androidx.databinding.DataBindingUtil
+//import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+//import com.farfromcampus.jeemocktestseries.ViewModels.TestViewmodel
+//import com.farfromcampus.jeemocktestseries.ViewModels.TestViewmodelFactory
+//import com.farfromcampus.jeemocktestseries.databinding.ActivityMocktestBinding
+import com.farfromcampus.jeemocktestseries.models.Mocktest
 import com.farfromcampus.jeemocktestseries.models.Test
 
 
@@ -23,7 +32,9 @@ class mocktestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mocktest)
+
         test = intent.getSerializableExtra("gettest") as Test
+        val mock = intent.getSerializableExtra("mock") as Mocktest
 
         val countTime: TextView = findViewById(R.id.countTime)
         object : CountDownTimer(60000*180, 1000) {
@@ -54,9 +65,16 @@ class mocktestActivity : AppCompatActivity() {
 
     private fun changeQuestion(x: Int) {
         i = x
+            var mathview = findViewById<MTMathView>(R.id.question)
             findViewById<RadioGroup>(R.id.options).clearCheck()
             findViewById<TextView>(R.id.question_number).text ="Question  ${x+1}"
-            findViewById<TextView>(R.id.question).text = test.Set[x].question
+            mathview.fontSize = 55.toFloat()
+            mathview.textAlignment = MTMathView.MTTextAlignment.KMTTextAlignmentLeft
+
+            mathview.latex = test.Set[x].question
+
+
+//            text = test.Set[x].question
 
             if(test.AnswerSheet[x] != " "){
                 findViewById<RadioGroup>(R.id.options).check(chkoption[x])
@@ -87,25 +105,18 @@ class mocktestActivity : AppCompatActivity() {
         if (x != -1 && test.AnswerSheet[i]!= idd) {
             test.AnswerSheet.set(i,idd)
         }
-        if(x == test.Set.size-1){
+
+        i++
+        if(i == test.Set.size-1){
             submit(view)
         }
-        i++
         changeQuestion(i)
     }
 
     fun skip(view: View) {
-
-        i++
+        i--
         changeQuestion(i)
     }
-
-    fun markForReview(view: View) {
-        if (test.Set[i].ques_id in marked) else
-            marked.add(test.Set[i].ques_id)
-        Toast.makeText(this, "Marked For Review Successfully", Toast.LENGTH_SHORT).show()
-    }
-
     fun chemistry(view: View) {
         i = test.subject[1]
         changeQuestion(i)
