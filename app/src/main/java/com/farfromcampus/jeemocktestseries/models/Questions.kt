@@ -11,15 +11,16 @@ import java.io.Serializable
 //) : Parcelable
 class Test:Serializable {
     var Set: ArrayList<Questions> = ArrayList(100)
-    var AnswerSheet: Array<String> = Array(30){" "}
+    var AnswerSheet: Array<String> = Array(100){""}
     var subject: Array<Int> = Array(3){-1}
     var mock_id: String = ""
 }
 
 class Questions:Serializable{
     var question:String=""
-    var level:Int=-1           //1->Easy  2->Medium  3->Hard
-    var type:String=""         //Integer Match-Column MCQ
+//    var idx:Int=-1
+//    var level:Int=-1           //1->Easy  2->Medium  3->Hard
+//    var type:String=""         //Integer Match-Column MCQ
     var option:ArrayList<String> = ArrayList(5)
     var image:String=""
     var answer:String = ""

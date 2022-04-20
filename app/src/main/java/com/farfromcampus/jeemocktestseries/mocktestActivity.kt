@@ -6,35 +6,41 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Half.toFloat
 import android.view.View
-import android.webkit.WebView
 import android.widget.*
-import com.agog.mathdisplay.MTMathView
-//import androidx.databinding.DataBindingUtil
-//import androidx.lifecycle.ViewModelProvider
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
-//import com.farfromcampus.jeemocktestseries.ViewModels.TestViewmodel
-//import com.farfromcampus.jeemocktestseries.ViewModels.TestViewmodelFactory
-//import com.farfromcampus.jeemocktestseries.databinding.ActivityMocktestBinding
-import com.farfromcampus.jeemocktestseries.models.Mocktest
 import com.farfromcampus.jeemocktestseries.models.Test
+import com.google.firebase.storage.FirebaseStorage
+import com.qdot.mathrendererlib.MathRenderView
 
 
 class mocktestActivity : AppCompatActivity() {
-    private var marked: ArrayList<String> = ArrayList()
+
     var test = Test()
+    var TotalMarks = 0
     var chkoption:Array<Int> = Array(100){-1}
     val mp = mapOf(0 to "a" ,1 to "b",2 to "c" ,3 to "d" ,4 to "e")
-
     private var i: Int = 0
+    //Options
+    private lateinit var radiogrp : RadioGroup
+    private lateinit var OptionA:RadioButton
+    private lateinit var OptionB:RadioButton
+    private lateinit var OptionC:RadioButton
+    private lateinit var OptionD:RadioButton
+    private lateinit var OptionE:RadioButton
+    private lateinit var OptionAView:MathRenderView
+    private lateinit var OptionBView:MathRenderView
+    private lateinit var OptionCView:MathRenderView
+    private lateinit var OptionDView:MathRenderView
+    private lateinit var OptionEView:MathRenderView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mocktest)
-
+        init()
         test = intent.getSerializableExtra("gettest") as Test
-        val mock = intent.getSerializableExtra("mock") as Mocktest
 
         val countTime: TextView = findViewById(R.id.countTime)
         object : CountDownTimer(60000*180, 1000) {
@@ -62,57 +68,78 @@ class mocktestActivity : AppCompatActivity() {
         }.start()
         changeQuestion(0)
     }
+    fun init(){
+        radiogrp = findViewById(R.id.options) as RadioGroup
+
+        OptionA = findViewById(R.id.a) as RadioButton
+        OptionB = findViewById(R.id.b) as RadioButton
+        OptionC = findViewById(R.id.c) as RadioButton
+        OptionD = findViewById(R.id.d) as RadioButton
+        OptionE = findViewById(R.id.e) as RadioButton
+
+        OptionAView = findViewById(R.id.optiona) as MathRenderView
+        OptionBView = findViewById(R.id.optionb) as MathRenderView
+        OptionCView = findViewById(R.id.optionc) as MathRenderView
+        OptionDView = findViewById(R.id.optiond) as MathRenderView
+        OptionEView = findViewById(R.id.optione) as MathRenderView
+    }
 
     private fun changeQuestion(x: Int) {
+
         i = x
-            var mathview = findViewById<MTMathView>(R.id.question)
-            findViewById<RadioGroup>(R.id.options).clearCheck()
-            findViewById<TextView>(R.id.question_number).text ="Question  ${x+1}"
-            mathview.fontSize = 55.toFloat()
-            mathview.textAlignment = MTMathView.MTTextAlignment.KMTTextAlignmentLeft
-
-            mathview.latex = test.Set[x].question
-
-
-//            text = test.Set[x].question
-
-            if(test.AnswerSheet[x] != " "){
-                findViewById<RadioGroup>(R.id.options).check(chkoption[x])
+        if(x<0){
+            Toast.makeText(this, "Index reach Negative value ${x}", Toast.LENGTH_SHORT).show()
+            i = 0
+        }else if(x > test.Set.size){
+            Toast.makeText(this, "Index reach out of Scope ${x}", Toast.LENGTH_SHORT).show()
+            i = test.Set.size
+        }
+        radiogrp.clearCheck()
+        if(chkoption[i]!=-1){
+            radiogrp.check(chkoption[x])
+        }
+            var mathview = findViewById<MathRenderView>(R.id.question)
+            findViewById<TextView>(R.id.question_number).text ="Question  ${i+1}"
+            mathview.text = test.Set[i].question
+            if (test.Set[i].image.isNotEmpty()) {
+                findViewById<ImageView>(R.id.Question_image).isVisible = true
+                val storage = FirebaseStorage.getInstance()
+                val gsReference = storage.getReferenceFromUrl(test.Set[i].image)
+                Glide.with(this@mocktestActivity).load(gsReference).into(findViewById(R.id.Question_image))
             }
-            if (test.Set[x].image.isNotEmpty()) {
-                Glide.with(this@mocktestActivity).load(test.Set[x].image).into(findViewById(R.id.Question_image))
+            OptionAView.text = test.Set[i].option[0]
+            OptionBView.text = test.Set[i].option[1]
+            OptionCView.text = test.Set[i].option[2]
+            OptionDView.text = test.Set[i].option[3]
+            if (test.Set[i].option[4].isNotEmpty()) {
+                OptionEView.isVisible = true
+                    OptionEView.text = test.Set[i].option[4]
+            }else{
+                OptionEView.isVisible = false
             }
-
-            findViewById<RadioButton>(R.id.a).text = test.Set[x].option[0]
-            findViewById<RadioButton>(R.id.b).text = test.Set[x].option[1]
-            findViewById<RadioButton>(R.id.c).text = test.Set[x].option[2]
-            findViewById<RadioButton>(R.id.d).text = test.Set[x].option[3]
-
-            if (test.Set[x].option[4].isNotEmpty()) {
-                findViewById<RadioButton>(R.id.e).text = test.Set[x].option[4]
-            }
-
         }
 
     fun saveAndNext(view: View) {
-        val x = findViewById<RadioGroup>(R.id.options).checkedRadioButtonId
-        val checkedOption = findViewById<RadioButton>(x)
-        var idd = ""
-        chkoption[i]=x
-
-        if(x != -1) { for (k in 0..4) { if (test.Set[i].option[k] == checkedOption.text) { idd = mp[k]!! } } }//???Alert
-
-        if (x != -1 && test.AnswerSheet[i]!= idd) {
-            test.AnswerSheet.set(i,idd)
+        val x = radiogrp.checkedRadioButtonId
+        if (x != -1) {
+            val checkedOption = findViewById<RadioButton>(x).resources.getResourceEntryName(x)
+            chkoption[i]=x
+            test.AnswerSheet.set(i,checkedOption)
         }
-
+        if(test.Set[i].answer == test.AnswerSheet[i]){
+            TotalMarks+=4
+        }else{
+            if(test.AnswerSheet[i]!=""){
+                TotalMarks--
+            }
+        }
         i++
-        if(i == test.Set.size-1){
+        if(i == test.Set.size){
             submit(view)
+            i--
         }
         changeQuestion(i)
     }
-
     fun skip(view: View) {
         i--
         changeQuestion(i)
@@ -121,23 +148,20 @@ class mocktestActivity : AppCompatActivity() {
         i = test.subject[1]
         changeQuestion(i)
     }
-
     fun physics(view: View) {
         i = test.subject[0]
         changeQuestion(i)
     }
-
     fun maths(view: View) {
         i = test.subject[2]
         changeQuestion(i)
     }
-
     fun submition(){
         val intent1 = Intent(this, submission_Activity::class.java)
         intent1.putExtra("gettest",test)
+        intent1.putExtra("TotalMarks",TotalMarks)
         startActivity(intent1)
     }
-
     fun submit(view: View) {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Submission")
@@ -154,5 +178,17 @@ class mocktestActivity : AppCompatActivity() {
             alertDialog.setCancelable(false)
             alertDialog.show()
 
+    }
+    override fun onBackPressed(){
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Exit Alert")
+            .setMessage("Do You Want To Exit Mock test?")
+            .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+                startActivity(Intent(this,MainActivity::class.java))
+                super.onBackPressed()
+            }
+            .setNegativeButton(android.R.string.cancel) { dialog, whichButton ->
+
+            }.show()
     }
 }
