@@ -15,13 +15,12 @@ class submission_Activity : AppCompatActivity() {
         setContentView(R.layout.activity_submission)
 
         val test = intent.getSerializableExtra("gettest") as Test
-
-        var totalmarks = 0
-        for (i in 0 until test.Set.size) {
-            if (test.Set[i].answer == test.AnswerSheet[i]) {
-                totalmarks = totalmarks + 4
-            }
-        }
+        var totalmarks = intent.getIntExtra("TotalMarks",0)
+//        for (i in 0 until test.Set.size) {
+//            if (test.Set[i].answer == test.AnswerSheet[i]) {
+//                totalmarks = totalmarks + 4
+//            }
+//        }
         findViewById<TextView>(R.id.marks).text = totalmarks.toString()
 
 //        val asptAnswer = AsptAnswerdao()
@@ -38,5 +37,16 @@ class submission_Activity : AppCompatActivity() {
             startActivity(intent)
 //        }
         }
+    }
+    override fun onBackPressed(){
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Message")
+            .setMessage("Do You Want To Exit Mocktest Result?")
+            .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+                startActivity(Intent(this,MainActivity::class.java))
+            }
+            .setNegativeButton(android.R.string.cancel) { dialog, whichButton ->
+
+            }.show()
     }
 }

@@ -4,28 +4,29 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
-//import com.farfromcampus.jeemocktestseries.ViewModels.TestViewmodel
-//import com.farfromcampus.jeemocktestseries.ViewModels.TestViewmodelFactory
 import com.farfromcampus.jeemocktestseries.daos.Mocktestdao
 import com.farfromcampus.jeemocktestseries.daos.Questiondao
 import com.farfromcampus.jeemocktestseries.models.Mocktest
 import com.farfromcampus.jeemocktestseries.models.Questions
 import com.farfromcampus.jeemocktestseries.models.Test
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
+import java.lang.Thread.sleep
 
 class ockreviewActivity : AppCompatActivity() {
 
-//    lateinit var testViewmodel : TestViewmodel
-
+    var isload =false
     var testnumber = 0
     var test = Test()
+    var quesid = Mocktest()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +36,7 @@ class ockreviewActivity : AppCompatActivity() {
         val intent2 = Intent(this,mocktestActivity::class.java)
         findViewById<Button>(R.id.startx).setOnClickListener { view: View ->
             intent2.putExtra("gettest", test)
+            intent2.putExtra("mock",quesid)
             startActivity(intent2)
         }
 
@@ -44,42 +46,61 @@ class ockreviewActivity : AppCompatActivity() {
         super.onStart()
         val mock_id = intent.getStringExtra("mock_id")!!
         test.mock_id = mock_id
-        GlobalScope.launch(Dispatchers.Main) {
-            val quesid =
-                Mocktestdao().getMockTestById(mock_id).await().toObject(Mocktest::class.java)!!
-
-//            testViewmodel = ViewModelProvider(this@ockreviewActivity,TestViewmodelFactory(quesid)).get(TestViewmodel::class.java)
-
+        GlobalScope.launch(Dispatchers.IO) {
+            quesid = Mocktestdao().getMockTestById(mock_id).await().toObject(Mocktest::class.java)!!
             testnumber = quesid.test_number
-            for (i in 0..20) {
-                val Ques = Questiondao().getQuestionById(quesid.ques_ids[i]).await()
-                    .toObject(Questions::class.java)!!
+            getMocktest(quesid)
 
-                test.Set.add(Ques)
-                delay(5)
-                test.subject[0] = 0                                 //Physics
-                if(test.subject[1]==-1 && Ques.subject_id==1)test.subject[1]=i  //Chemistry
-                if(test.subject[2]==-1 && Ques.subject_id==2)test.subject[2]=i  //Mathematics
-
-
-                findViewById<TextView>(R.id.status).text = test.Set.size.toString()
-                if (i == 20) {
+            GlobalScope.launch(Dispatchers.Main){
+                    delay(2000)
                     execute()
-                }
             }
         }
+//        execute()
+    }
 
+    suspend fun getMocktest(quesid:Mocktest){
+        val chunks = quesid.ques_ids.chunked(10) as ArrayList
+        var questionTasks: ArrayList<Task<QuerySnapshot>> = ArrayList()
+        for (chunk in chunks) {
+            val task = Questiondao().getAllQuestionsByIds(chunk)
+                .addOnSuccessListener { document ->
+                    for (dat in document) {
+                        test.Set.add(dat.toObject(Questions::class.java))
+                    }
+                }
+                .addOnFailureListener {
+                    Log.d("TAG", "Failed")
+                }
+            questionTasks.add(task)
+        }
+        for (task in questionTasks) {
+            task.await()
+        }
     }
 
 
-    @SuppressLint("SetTextI18n")
+        @SuppressLint("SetTextI18n")
     fun execute() {
+            isload=true
+        test.Set.sortedWith(compareBy({ it.ques_id }))
+        var maths : ArrayList<Int> = ArrayList()
+        var chemistry : ArrayList<Int> = ArrayList()
+        var physics : ArrayList<Int> = ArrayList()
+        if(test.Set.size > 0) {
+           for (i in 0..test.Set.size-1) {
+                if (test.Set[i].subject_id == 0) physics.add(i)
+                else if (test.Set[i].subject_id == 1) chemistry.add(i)
+                else if (test.Set[i].subject_id == 2) maths.add(i)
+            }
+        }
+
         var mockNum =findViewById<TextView>(R.id.mocknumber)
         var Ques = findViewById<TextView>(R.id.questions)
         var details = findViewById<TextView>(R.id.details)
+
         findViewById<ProgressBar>(R.id.progressBar2).isVisible = false
         findViewById<TextView>(R.id.textView3).isVisible = false
-
         mockNum.isVisible = true
         Ques.isVisible = true
         details.isVisible =true
@@ -89,26 +110,18 @@ class ockreviewActivity : AppCompatActivity() {
 
         mockNum.text = "Mock Test $testnumber"
 
-        val a = test.subject[1]
-        val b = test.subject[2]
-        val c = test.Set.size
+        val a = physics.size
+        val b = chemistry.size
+        val c = maths.size
+        if(physics.isNotEmpty()) {
+            test.subject[0] = physics.get(0)
+            test.subject[1] = chemistry.get(0)
+            test.subject[2] = maths.get(0)
+        }
 
-        Ques.text = "$c Questions"
-
-        details.text = "$a Questions of Physics\n${c-b} Questions of Mathematics\n${b-a} Questions of Chemistry\n" + "Time- 3Hr"
-
-
+        Ques.text = "${a+b+c} Questions"
+        details.text = "$a Questions of Physics\n${c} Questions of Mathematics\n${b} Questions of Chemistry\n" + "Time- 3Hr"
     }
 
-    //    override fun onBackPressed(){
-//        AlertDialog.Builder(this)
-//            .setTitle("Exit Alert")
-//            .setMessage("Do You Want To Exit Mock test?")
-//            .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
-//                super.onBackPressed()
-//            }
-//            .setNegativeButton(android.R.string.cancel) { dialog, whichButton ->
-//
-//            }.show()
-//    }
+
 }

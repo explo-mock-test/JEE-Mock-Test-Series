@@ -23,4 +23,7 @@ class Mocktestdao {
     fun getMockTestById(uId: String): Task<DocumentSnapshot> {
         return mocktestCollection.document(uId).get()
     }
+//    fun getAllMockTest():Task<QuerySnapshot>{
+//        return mocktestCollection
+//    }
 }
