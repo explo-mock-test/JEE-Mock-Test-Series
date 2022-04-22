@@ -1,6 +1,7 @@
 package com.farfromcampus.jeemocktestseries
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,9 +28,10 @@ class Tests_Adapter(val mocktests:ArrayList<Mocktest>):RecyclerView.Adapter<Test
         holder.TestTime.text = "Time: " + mocktests[position].time.toString() + "Hours"
 
         holder.start.setOnClickListener { v->
-            val intent1 = Intent(v.context , ockreviewActivity::class.java)
-            intent1.putExtra("mock_id",mocktests[position].mock_id)
-            v.context.startActivity(intent1)
+//            val intent1 = Intent(v.context , ockreviewActivity::class.java)
+//            intent1.putExtra("mock_id",mocktests[position].mock_id)
+//            v.context.startActivity(intent1)
+            Log.d("NAVIGATION ACTION", "Need to add code to navigate to test")
         }
     }
 }

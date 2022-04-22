@@ -10,47 +10,43 @@ import com.farfromcampus.jeemocktestseries.models.Mocktest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.farfromcampus.jeemocktestseries.databinding.ActivityMainBinding
+
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         if (GoogleSignIn.getLastSignedInAccount(this) == null) {
             startActivity(Intent(this, getstartedActivity::class.java))
             finish()
         }
 
-//        var mock = Mocktest()
-//        mock.name = "JEE 2022 MockTest"
-//        mock.testtype = "Full"
-//        mock.time = 3
-//        mock.test_number=4
-//        mock.mock_id= "testingappmocktest4"
-//        var quesids:ArrayList<String> = ArrayList()
-//        for(i in 1..81){
-//            quesids.add("Jee22_idx_$i")
+        val navController = this.findNavController(R.id.nav_host_fragment)
+        NavigationUI.setupActionBarWithNavController(this, navController)
+
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp()
+    }
+
+
+//    override fun onStart() {
+//        super.onStart()
+//        val mock_id = "testingfirstmocktest"
+//        val intent =Intent(this,ockreviewActivity::class.java)
+//        binding.button.setOnClickListener {
+//            intent.putExtra("mock_id",mock_id)
+//            startActivity(intent)
 //        }
-//        mock.ques_ids=quesids
-//        Mocktestdao().addMockTest(mock)
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-        var mocks:ArrayList<Mocktest> = ArrayList()
-        runBlocking {
-            Mocktestdao().getAllMockTest().addOnSuccessListener { document ->
-                for (dat in document) {
-                    mocks.add(dat.toObject(Mocktest::class.java))
-                }
-            }.await()
-        }
-        val recyclerview = findViewById<RecyclerView>(R.id.testsview)
-        recyclerview.layoutManager = LinearLayoutManager(this)
-        val adapter1 = Tests_Adapter(mocks)
-        recyclerview.adapter = adapter1
-    }
+//    }
 }

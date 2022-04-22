@@ -35,9 +35,6 @@
             android:name=".mocktestActivity"
             android:exported="false" />
         <activity
-            android:name=".ockreviewActivity"
-            android:exported="false" />
-        <activity
             android:name=".signinActivity"
             android:exported="false" />
         <activity
