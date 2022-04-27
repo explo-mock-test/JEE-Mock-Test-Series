@@ -7,4 +7,6 @@ class Mocktest:Serializable {
     var mock_id: String = ""
     var testtype: String = ""
     var test_number: Int = -1
+    var name: String = ""
+    var time: Int = 3
 }

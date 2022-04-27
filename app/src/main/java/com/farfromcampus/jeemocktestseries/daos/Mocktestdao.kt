@@ -4,6 +4,7 @@ import com.farfromcampus.jeemocktestseries.models.Mocktest
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -23,7 +24,7 @@ class Mocktestdao {
     fun getMockTestById(uId: String): Task<DocumentSnapshot> {
         return mocktestCollection.document(uId).get()
     }
-//    fun getAllMockTest():Task<QuerySnapshot>{
-//        return mocktestCollection
-//    }
+    fun getAllMockTest():Task<QuerySnapshot>{
+        return mocktestCollection.get()
+    }
 }
