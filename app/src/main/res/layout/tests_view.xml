@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="30dp"
+    android:layout_marginVertical="15dp"
+    android:background="@color/white"
+    android:filterTouchesWhenObscured="false"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/TestName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Jee Main MockTest"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/TestNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test Number 2" />
+
+    <TextView
+        android:id="@+id/TestType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="All Subject" />
+
+    <TextView
+        android:id="@+id/Time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time :- 3Hr" />
+
+    <Button
+        android:id="@+id/StartTest"
+        style="@android:style/Widget.Holo.Light.Button.Inset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="10dp"
+        android:gravity="right"
+        android:text="Start" />
+
+</LinearLayout>
