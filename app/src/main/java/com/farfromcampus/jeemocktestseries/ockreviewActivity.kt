@@ -63,6 +63,7 @@ class ockreviewActivity : AppCompatActivity() {
         val chunks = quesid.ques_ids.chunked(10) as ArrayList
         var questionTasks: ArrayList<Task<QuerySnapshot>> = ArrayList()
         for (chunk in chunks) {
+//            Log.d("TAGG!",Questiondao().getAllQuestionsByIds(chunk).await().toString())
             val task = Questiondao().getAllQuestionsByIds(chunk)
                 .addOnSuccessListener { document ->
                     for (dat in document) {
