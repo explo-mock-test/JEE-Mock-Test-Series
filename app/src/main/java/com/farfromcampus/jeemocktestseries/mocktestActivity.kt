@@ -103,9 +103,9 @@ class mocktestActivity : AppCompatActivity() {
             mathview.text = test.Set[i].question
             if (test.Set[i].image.isNotEmpty()) {
                 findViewById<ImageView>(R.id.Question_image).isVisible = true
-                val storage = FirebaseStorage.getInstance()
-                val gsReference = storage.getReferenceFromUrl(test.Set[i].image)
-                Glide.with(this@mocktestActivity).load(gsReference).into(findViewById(R.id.Question_image))
+                Glide.with(this@mocktestActivity).load(test.Set[i].image).into(findViewById(R.id.Question_image))
+            }else{
+                findViewById<ImageView>(R.id.Question_image).isVisible = false
             }
             OptionAView.text = test.Set[i].option[0]
             OptionBView.text = test.Set[i].option[1]
