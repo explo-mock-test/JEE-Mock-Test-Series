@@ -29,13 +29,6 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        val mock_id = "testingfirstmocktest"
-        val intent = Intent(this, ockreviewActivity::class.java)
-        findViewById<Button>(R.id.button).setOnClickListener {
-            intent.putExtra("mock_id", mock_id)
-            startActivity(intent)
-        }
-
 
 
 
@@ -44,18 +37,13 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         var mocks:ArrayList<Mocktest> = ArrayList()
-        runBlocking{
-            Log.d("TAGG",Mocktestdao().getAllMockTest().await().toString())
+        runBlocking {
             Mocktestdao().getAllMockTest().addOnSuccessListener { document ->
                 for (dat in document) {
-                    Log.d("TAGG2",dat.toObject(Mocktest::class.java).toString())
                     mocks.add(dat.toObject(Mocktest::class.java))
-                    Log.d("TAGG45",mocks.size.toString())
                 }
             }.await()
         }
-        Log.d("TAGG",mocks.size.toString())
-
         val recyclerview = findViewById<RecyclerView>(R.id.testsview)
         recyclerview.layoutManager = LinearLayoutManager(this)
         val adapter1 = Tests_Adapter(mocks)
