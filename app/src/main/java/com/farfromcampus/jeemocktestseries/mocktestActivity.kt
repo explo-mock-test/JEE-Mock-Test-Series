@@ -111,11 +111,13 @@ class mocktestActivity : AppCompatActivity() {
             OptionBView.text = test.Set[i].option[1]
             OptionCView.text = test.Set[i].option[2]
             OptionDView.text = test.Set[i].option[3]
-            if (test.Set[i].option[4].isNotEmpty()) {
-                OptionEView.isVisible = true
+            if(test.Set[i].option.size>4) {
+                if (test.Set[i].option[4].isNotEmpty()) {
+                    OptionEView.isVisible = true
                     OptionEView.text = test.Set[i].option[4]
-            }else{
-                OptionEView.isVisible = false
+                } else {
+                    OptionEView.isVisible = false
+                }
             }
         }
 

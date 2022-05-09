@@ -8,14 +8,13 @@ import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.farfromcampus.jeemocktestseries.daos.Mocktestdao
+import com.farfromcampus.jeemocktestseries.daos.Questiondao
 import com.farfromcampus.jeemocktestseries.models.Mocktest
 import com.farfromcampus.jeemocktestseries.models.Questions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
+import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,15 +28,18 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        val mock_id = "testingfirstmocktest"
-        val intent = Intent(this, ockreviewActivity::class.java)
-        findViewById<Button>(R.id.button).setOnClickListener {
-            intent.putExtra("mock_id", mock_id)
-            startActivity(intent)
-        }
-
-
-
+//        var mock = Mocktest()
+//        mock.name = "WarmUp JEE MockTest"
+//        mock.testtype = "Full"
+//        mock.time = 3
+//        mock.test_number=2
+//        mock.mock_id= "testingappmocktest1"
+//        var quesids:ArrayList<String> = ArrayList()
+//        for(i in 1..90){
+//            quesids.add("Warmup_idx_$i")
+//        }
+//        mock.ques_ids=quesids
+//        Mocktestdao().addMockTest(mock)
 
     }
 

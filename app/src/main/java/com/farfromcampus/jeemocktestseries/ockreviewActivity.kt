@@ -114,11 +114,10 @@ class ockreviewActivity : AppCompatActivity() {
         val a = physics.size
         val b = chemistry.size
         val c = maths.size
-        if(physics.isNotEmpty()) {
-            test.subject[0] = physics.get(0)
-            test.subject[1] = chemistry.get(0)
-            test.subject[2] = maths.get(0)
-        }
+        if(physics.isNotEmpty())test.subject[0] = physics.get(0)
+            if(chemistry.isNotEmpty())test.subject[1] = chemistry.get(0)
+            if(maths.isNotEmpty())test.subject[2] = maths.get(0)
+
 
         Ques.text = "${a+b+c} Questions"
         details.text = "$a Questions of Physics\n${c} Questions of Mathematics\n${b} Questions of Chemistry\n" + "Time- 3Hr"
