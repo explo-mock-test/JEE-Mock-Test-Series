@@ -22,9 +22,9 @@ class Tests_Adapter(val mocktests:ArrayList<Mocktest>):RecyclerView.Adapter<Test
     }
     override fun onBindViewHolder(holder: TestsViewHolder, position: Int) {
         holder.TestName.text = mocktests[position].name
-        holder.TestNumber.text = mocktests[position].test_number.toString()
-        holder.TestType.text = mocktests[position].testtype
-        holder.TestTime.text = mocktests[position].time.toString()
+        holder.TestNumber.text = "Test Number: " + mocktests[position].test_number.toString()
+        holder.TestType.text = "Type/Lenght: " + mocktests[position].testtype + " & " + mocktests[position].ques_ids.size + " Questions"
+        holder.TestTime.text = "Time: " + mocktests[position].time.toString() + "Hours"
 
         holder.start.setOnClickListener { v->
             val intent1 = Intent(v.context , ockreviewActivity::class.java)

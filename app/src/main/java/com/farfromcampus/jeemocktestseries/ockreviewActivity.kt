@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import com.farfromcampus.jeemocktestseries.daos.Mocktestdao
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
+import org.w3c.dom.Text
 import java.lang.Thread.sleep
 
 class ockreviewActivity : AppCompatActivity() {
@@ -106,6 +108,7 @@ class ockreviewActivity : AppCompatActivity() {
         Ques.isVisible = true
         details.isVisible =true
 
+            findViewById<ScrollView>(R.id.scroll).isVisible = true
         findViewById<TextView>(R.id.instructions).isVisible = true
         findViewById<Button>(R.id.startx).isVisible = true
 
@@ -121,6 +124,18 @@ class ockreviewActivity : AppCompatActivity() {
 
         Ques.text = "${a+b+c} Questions"
         details.text = "$a Questions of Physics\n${c} Questions of Mathematics\n${b} Questions of Chemistry\n" + "Time- 3Hr"
+
+
+            findViewById<TextView>(R.id.instructions).text = " Instructions\n" +
+                    "The quizzes consists of questions carefully designed to help you self-assess your comprehension of the information presented on the topics covered in the module. No data will be collected on the website regarding your responses or how many times you take the quiz.\n" +
+                    "\n" +
+                    "Each question in the quiz is of multiple-choice or \"true or false\" format. Read each question carefully, and click on the button next to your response that is based on the information covered on the topic in the module. Each correct or incorrect response will result in appropriate feedback immediately at the bottom of the screen.\n" +
+                    "\n" +
+                    "After responding to a question, click on the \"Next Question\" button at the bottom to go to the next questino. After responding to all Question, click on \"Submit\" on the top of the window to exit the quiz.\n" +
+                    "\n" +
+                    "There is Negative marking for Incorrect Option\n" +
+                    "\n" +
+                    "The total score for the quiz is based on your responses to all questions.your test score will reflect it appropriately."
     }
 
 

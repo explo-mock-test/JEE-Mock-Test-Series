@@ -4,60 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".submission_Activity">
+    tools:context=".submission_Activity"
+    android:background="@drawable/img7">
 
     <Button
         android:id="@+id/viewsolution"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="468dp"
         android:text="@string/view_solution"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.779"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/homepage"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/blue"/>
 
     <Button
         android:id="@+id/homepage"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="10dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
         android:text="@string/home"
-        app:layout_constraintBaseline_toBaselineOf="@+id/viewsolution"
-        app:layout_constraintEnd_toStartOf="@+id/viewsolution" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/viewsolution"
+        android:layout_marginTop="468dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/blue"/>
 
     <TextView
         android:id="@+id/textView2"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+
         android:layout_marginTop="16dp"
-        android:fontFamily="serif-monospace"
-        android:text="Mock Test Result"
-        android:textSize="34sp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Test Result"
+
+        android:textColor="@color/black"
+        android:textSize="50dp"
         android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/marks"
-        android:layout_width="199dp"
-        android:layout_height="61dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:text="TextView"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="326dp"
+        android:layout_width="match_parent"
         android:layout_height="78dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.188"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/marks" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".solution_Activity">
+    tools:context=".solution_Activity"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/textView5"
@@ -12,7 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="sans-serif-condensed"
+        android:textStyle="bold"
         android:text="Solution"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +23,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:background="@null"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
