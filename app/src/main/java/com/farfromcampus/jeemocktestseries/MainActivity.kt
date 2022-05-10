@@ -1,14 +1,16 @@
 package com.farfromcampus.jeemocktestseries
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.farfromcampus.jeemocktestseries.databinding.ActivityMainBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -48,10 +50,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun logout() {
-        Firebase.auth.signOut()
-
-        val intent = Intent(this, getstartedActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.My_id))
+            .requestEmail()
+            .build()
+        // getting the value of gso inside the GoogleSigninClient
+        val mGoogleSignInClient= GoogleSignIn.getClient(this,gso)
+        mGoogleSignInClient.signOut()
+            .addOnCompleteListener(this) {
+                Firebase.auth.signOut()
+                val intent = Intent(this, getstartedActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+            }
     }
 }
