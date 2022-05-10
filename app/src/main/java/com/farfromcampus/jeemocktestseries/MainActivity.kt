@@ -3,28 +3,14 @@ package com.farfromcampus.jeemocktestseries
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-<<<<<<< HEAD
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.farfromcampus.jeemocktestseries.daos.Mocktestdao
-import com.farfromcampus.jeemocktestseries.models.Mocktest
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import kotlinx.coroutines.*
-import kotlinx.coroutines.tasks.await
-=======
->>>>>>> f4b02ca (Add navigation drawer and convert most activities to fragments)
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.farfromcampus.jeemocktestseries.databinding.ActivityMainBinding
-<<<<<<< HEAD
-
-=======
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
->>>>>>> f4b02ca (Add navigation drawer and convert most activities to fragments)
 
 
 class MainActivity : AppCompatActivity() {
