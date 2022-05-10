@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             .Builder(
                 R.id.homeFragment,
                 R.id.mockTestFragment,
+                R.id.aboutFragment
             )
             .setOpenableLayout(drawerLayout).build()
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
