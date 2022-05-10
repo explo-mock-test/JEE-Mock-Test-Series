@@ -24,16 +24,6 @@
             </intent-filter>
         </activity>
 
-
-        <activity
-            android:name=".submission_Activity"
-            android:exported="false" />
-        <activity
-            android:name=".solution_Activity"
-            android:exported="false" />
-        <activity
-            android:name=".mocktestActivity"
-            android:exported="false" />
         <activity
             android:name=".signinActivity"
             android:exported="false" />

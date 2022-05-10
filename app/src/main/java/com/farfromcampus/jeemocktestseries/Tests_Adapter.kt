@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.farfromcampus.jeemocktestseries.models.Mocktest
 
@@ -24,14 +25,15 @@ class Tests_Adapter(val mocktests:ArrayList<Mocktest>):RecyclerView.Adapter<Test
     override fun onBindViewHolder(holder: TestsViewHolder, position: Int) {
         holder.TestName.text = mocktests[position].name
         holder.TestNumber.text = "Test Number: " + mocktests[position].test_number.toString()
-        holder.TestType.text = "Type/Lenght: " + mocktests[position].testtype + " & " + mocktests[position].ques_ids.size + " Questions"
-        holder.TestTime.text = "Time: " + mocktests[position].time.toString() + "Hours"
+        if (mocktests[position].testtype.isEmpty()) {
+            holder.TestType.text = "Type/Length: " + mocktests[position].testtype + " & " + mocktests[position].ques_ids.size + " Questions"
+        } else {
+            holder.TestType.text = "Type/Length: " + "All Subject" + " & " + mocktests[position].ques_ids.size + " Questions"
+        }
+        holder.TestTime.text = "Time :- ${mocktests[position].time.toString()} Hr"
 
         holder.start.setOnClickListener { v->
-//            val intent1 = Intent(v.context , ockreviewActivity::class.java)
-//            intent1.putExtra("mock_id",mocktests[position].mock_id)
-//            v.context.startActivity(intent1)
-            Log.d("NAVIGATION ACTION", "Need to add code to navigate to test")
+            v.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMockreviewFragment(mocktests[position].mock_id))
         }
     }
 }

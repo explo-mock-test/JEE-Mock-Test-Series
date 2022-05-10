@@ -33,6 +33,7 @@ class Sol_Adapter(val test:ArrayList<Questions>):RecyclerView.Adapter<SolutionVi
                 holder.ques_text.text = test[position].question
                 holder.answer.text = "Answer:- " +  test[position].answer
 
+<<<<<<< HEAD
                 holder.optiona.text = "A. " + test[position].option[0]
                 holder.optionb.text = "B. " + test[position].option[1]
                 holder.optionc.text = "C. " +test[position].option[2]
@@ -44,6 +45,17 @@ class Sol_Adapter(val test:ArrayList<Questions>):RecyclerView.Adapter<SolutionVi
                     } else {
                         holder.optione.isVisible = false
                     }
+=======
+                holder.optiona.text = test[position].option[0]
+                holder.optionb.text = test[position].option[1]
+                holder.optionc.text = test[position].option[2]
+                holder.optiond.text = test[position].option[3]
+                if(test[position].option.size == 5 && test[position].option[4].isNotEmpty()){
+                    holder.optione.isVisible =true
+                    holder.optione.text = test[position].option[4]
+                } else {
+                    holder.optione.isVisible =false
+>>>>>>> f4b02ca (Add navigation drawer and convert most activities to fragments)
                 }
 
                 holder.sol_text.text = test[position].solution

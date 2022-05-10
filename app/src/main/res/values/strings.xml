@@ -28,5 +28,9 @@
     <string name="answer_text">answer text</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="blank">Blank</string>
+    <string name="next">NEXT</string>
+    <string name="previous">PREVIOUS</string>
+    <string name="solution">Solution</string>
+    <string name="logout">Logout</string>
 </resources>
