@@ -14,6 +14,7 @@ class Test:Serializable {
     var AnswerSheet: Array<String> = Array(100){""}
     var subject: Array<Int> = Array(3){-1}
     var mock_id: String = ""
+    var marks:Array<Int> = Array(6){0} //0->total marks 1->physics 2->chemistry 3->maths 4->wrong answer 5->total attempt
 }
 
 class Questions:Serializable{

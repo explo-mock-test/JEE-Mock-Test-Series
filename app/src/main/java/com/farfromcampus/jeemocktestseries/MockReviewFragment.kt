@@ -105,9 +105,11 @@ class MockReviewFragment : Fragment() {
         mockNum.visibility = View.VISIBLE
         Ques.visibility = View.VISIBLE
         details.visibility = View.VISIBLE
+        binding.scroll.visibility = View.VISIBLE
         binding.instructions.visibility = View.VISIBLE
         binding.startx.visibility= View.VISIBLE
         mockNum.text = "Mock Test $testnumber"
+
 
         val a = physics.size
         val b = chemistry.size
