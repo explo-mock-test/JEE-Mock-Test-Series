@@ -37,10 +37,10 @@ class Sol_Adapter(val test:ArrayList<Questions>):RecyclerView.Adapter<SolutionVi
                 holder.optionb.text = test[position].option[1]
                 holder.optionc.text = test[position].option[2]
                 holder.optiond.text = test[position].option[3]
-                if(test[position].option[4].isNotEmpty()){
+                if(test[position].option.size == 5 && test[position].option[4].isNotEmpty()){
                     holder.optione.isVisible =true
-                holder.optione.text = test[position].option[4]
-                }else{
+                    holder.optione.text = test[position].option[4]
+                } else {
                     holder.optione.isVisible =false
                 }
 

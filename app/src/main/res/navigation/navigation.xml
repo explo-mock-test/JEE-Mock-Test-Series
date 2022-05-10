@@ -15,6 +15,58 @@
     </fragment>
     <fragment
         android:id="@+id/mockreviewFragment"
-        android:name="com.farfromcampus.jeemocktestseries.MockreviewFragment"
-        android:label="MockreviewFragment" />
+        android:name="com.farfromcampus.jeemocktestseries.MockReviewFragment"
+        android:label="Start Test">
+        <argument
+            android:name="mockId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_mockreviewFragment_to_mockTestFragment"
+            app:destination="@id/mockTestFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navLogout"
+        android:name="com.farfromcampus.jeemocktestseries.BlankFragment"
+        android:label="Blank"
+        tools:layout="@layout/fragment_blank" />
+    <fragment
+        android:id="@+id/mockTestFragment"
+        android:name="com.farfromcampus.jeemocktestseries.MockTestFragment"
+        android:label="Test Started">
+        <argument
+            android:name="test"
+            app:argType="com.farfromcampus.jeemocktestseries.models.Test" />
+        <action
+            android:id="@+id/action_mockTestFragment_to_submissionFragment"
+            app:destination="@id/submissionFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/submissionFragment"
+        android:name="com.farfromcampus.jeemocktestseries.SubmissionFragment"
+        android:label="Result">
+        <argument
+            android:name="totalMarks"
+            app:argType="integer" />
+        <argument
+            android:name="test"
+            app:argType="com.farfromcampus.jeemocktestseries.models.Test" />
+        <action
+            android:id="@+id/action_submissionFragment_to_solutionFragment"
+            app:destination="@id/solutionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/solutionFragment"
+        android:name="com.farfromcampus.jeemocktestseries.SolutionFragment"
+        android:label="View Solutions">
+        <argument
+            android:name="test"
+            app:argType="com.farfromcampus.jeemocktestseries.models.Test" />
+        <action
+            android:id="@+id/action_solutionFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
