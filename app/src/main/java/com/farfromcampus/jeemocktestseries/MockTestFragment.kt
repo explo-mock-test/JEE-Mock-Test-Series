@@ -20,6 +20,10 @@ import com.bumptech.glide.Glide
 import com.farfromcampus.jeemocktestseries.databinding.FragmentMockTestBinding
 import com.farfromcampus.jeemocktestseries.models.Test
 import com.qdot.mathrendererlib.MathRenderView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
@@ -149,10 +153,17 @@ class MockTestFragment : Fragment() {
         }else{
             binding.QuestionImage.isVisible = false
         }
-        OptionAView.text = test.Set[i].option[0]
-        OptionBView.text = test.Set[i].option[1]
-        OptionCView.text = test.Set[i].option[2]
-        OptionDView.text = test.Set[i].option[3]
+
+        OptionAView.text = "A. " + test.Set[i].option[0]
+        OptionBView.text = "B. " + test.Set[i].option[1]
+        OptionCView.text = "C. " + test.Set[i].option[2]
+        OptionDView.text = "D. " + test.Set[i].option[3]
+        //Added for height correcption
+//            OptionA.height = OptionAView.height
+//            OptionB.height = OptionBView.height
+//            OptionC.height = OptionCView.height
+//            OptionD.height = OptionDView.height
+
         if (test.Set[i].option.size == 5 && test.Set[i].option[4].isNotEmpty()) {
             OptionEView.isVisible = true
             OptionEView.text = test.Set[i].option[4]
@@ -166,13 +177,24 @@ class MockTestFragment : Fragment() {
         if (x != -1) {
             val checkedOption = requireView().findViewById<RadioButton>(x).resources.getResourceEntryName(x)
             chkoption[i]=x
+            test.marks[5]++
             test.AnswerSheet.set(i,checkedOption)
         }
         if(test.Set[i].answer == test.AnswerSheet[i]){
             TotalMarks+=4
+            test.marks[0]+=4
+            if(test.Set[i].subject_id==0){
+                test.marks[1]=test.marks[1]+1
+            }else if(test.Set[i].subject_id==1){
+                test.marks[2]=test.marks[2]+1
+            }else if(test.Set[i].subject_id==2){
+                test.marks[3]=test.marks[3]+1
+            }
         }else{
             if(test.AnswerSheet[i]!=""){
                 TotalMarks--
+                test.marks[0]--
+                test.marks[4]++
             }
         }
         i++

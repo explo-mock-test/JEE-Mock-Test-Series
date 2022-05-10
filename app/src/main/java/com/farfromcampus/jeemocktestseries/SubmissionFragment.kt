@@ -1,5 +1,6 @@
 package com.farfromcampus.jeemocktestseries
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -34,6 +35,7 @@ class SubmissionFragment : Fragment() {
         })
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,13 +44,20 @@ class SubmissionFragment : Fragment() {
         args = SubmissionFragmentArgs.fromBundle(requireArguments())
 
         val test = args.test
-        var totalmarks = args.totalMarks
-//        for (i in 0 until test.Set.size) {
-//            if (test.Set[i].answer == test.AnswerSheet[i]) {
-//                totalmarks = totalmarks + 4
-//            }
-//        }
-        binding.marks.text = totalmarks.toString()
+//        var totalmarks = args.totalMarks
+        val n=test.Set.size
+        val k=(test.marks[1]+test.marks[2]+test.marks[3])
+
+        binding.marks.text = test.marks[0].toString()
+        binding.resultdetails.text ="Subject Wise Total Marks:" +
+                                    "\n   Physics: ${test.marks[1]*4}"+
+                                    "\n   Chemistry: ${test.marks[2]*4}"+
+                                    "\n   Mathematics: ${test.marks[3]*4}"+
+                                    "\n\nWrong Answer: ${test.marks[4]}"+
+                                    "\nTotal Attempts: ${test.marks[5]}"+
+                                            "\nAttempt Accuracy: ${(k.toFloat()/test.marks[5].toFloat())*100}%"+
+                                    "\nOverall Accuracy is: ${(k.toFloat()/n.toFloat())*100}%" +
+                                    "\n"
 
 //        val asptAnswer = AsptAnswerdao()
 //        val listss = test.AnswerSheet.toList()
