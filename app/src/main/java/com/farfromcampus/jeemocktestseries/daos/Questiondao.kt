@@ -20,5 +20,4 @@ class Questiondao {
     fun getAllQuestionsByIds(ques_ids:List<String>): Task<QuerySnapshot> {
         return questionCollection.whereIn("ques_id", ques_ids).get()
     }
-
 }

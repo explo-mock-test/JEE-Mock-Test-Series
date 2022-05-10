@@ -2,11 +2,43 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:background="#C1EFC3">
 
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="364dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#AA2727"
+            android:fontFamily="sans-serif-medium"
+            android:text="MockTest Application       V.1.0"
+            android:textColor="#970505"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.276"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="384dp"
+            android:layout_height="336dp"
+            android:layout_marginTop="24dp"
+            android:background="#B0D894"
+            android:fontFamily="sans-serif-medium"
+            android:text="MockTest Made by Student of IIT BHU to help JEE Aspirant for There better preparation. This application is free for all student. \nExploratory Project” being submitted by Ashutosh Dubey, Gaurav Kumar, Aditya Chhaparia, carried out in the Department of Computer Science and Engineering, Indian Institute of Technology (BHU) Varanasi.\n Contact No. 9876543210,9876526473,9271553771\nE-mail gaurav1230@gmail.com, adityachhap12@gmail.com, ashutost1241@gmail.com\n
+"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:ignore="HardcodedText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
