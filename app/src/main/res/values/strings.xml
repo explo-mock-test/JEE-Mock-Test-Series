@@ -26,5 +26,11 @@
     <string name="My_id">1086105931189-o9c971et56meapeohap6m2elm8h9mh6t.apps.googleusercontent.com</string>
     <string name="question_text">question text</string>
     <string name="answer_text">answer text</string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="blank">Blank</string>
+    <string name="next">NEXT</string>
+    <string name="previous">PREVIOUS</string>
+    <string name="solution">Solution</string>
+    <string name="logout">Logout</string>
 </resources>

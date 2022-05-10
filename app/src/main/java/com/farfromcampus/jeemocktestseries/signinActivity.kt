@@ -15,9 +15,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 @Suppress("DEPRECATION")
 class signinActivity : AppCompatActivity() {
-
     lateinit var mGoogleSignInClient: GoogleSignInClient
-    val Req_Code:Int=123
+    private val Req_Code:Int=123
     var firebaseAuth= FirebaseAuth.getInstance()
           //val signInButton=findViewById<SignInButton>(R.id.signInButton)
           //val progressBar=findViewById<ProgressBar>(R.id.progressBar)
@@ -39,12 +38,10 @@ class signinActivity : AppCompatActivity() {
             findViewById<Button>(R.id.Signin).setOnClickListener{
                 signInGoogle()
             }
-
         }
 
     // signInGoogle() function
     private  fun signInGoogle(){
-
         val signInIntent: Intent =mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent,Req_Code)
     }
@@ -67,6 +64,7 @@ class signinActivity : AppCompatActivity() {
             Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show()
         }
     }
+
     // UpdateUI() function - this is where we specify what UI updation are needed after google signin has taken place.
     private fun UpdateUI(account: GoogleSignInAccount){
         val credential= GoogleAuthProvider.getCredential(account.idToken,null)
@@ -80,13 +78,13 @@ class signinActivity : AppCompatActivity() {
             }
         }
     }
+
     override fun onStart() {
         super.onStart()
-        if(GoogleSignIn.getLastSignedInAccount(this)!=null){
+        val currentUser = firebaseAuth.currentUser
+        if(currentUser !=null){
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
-
-
-    }
+ }
