@@ -23,18 +23,18 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-////        var mock = Mocktest()
-////        mock.name = "WarmUp JEE MockTest"
-////        mock.testtype = "Full"
-////        mock.time = 3
-////        mock.test_number=2
-////        mock.mock_id= "testingappmocktest1"
-////        var quesids:ArrayList<String> = ArrayList()
-////        for(i in 1..90){
-////            quesids.add("Warmup_idx_$i")
-////        }
-////        mock.ques_ids=quesids
-////        Mocktestdao().addMockTest(mock)
+//        var mock = Mocktest()
+//        mock.name = "JEE 2022 MockTest"
+//        mock.testtype = "Full"
+//        mock.time = 3
+//        mock.test_number=4
+//        mock.mock_id= "testingappmocktest4"
+//        var quesids:ArrayList<String> = ArrayList()
+//        for(i in 1..81){
+//            quesids.add("Jee22_idx_$i")
+//        }
+//        mock.ques_ids=quesids
+//        Mocktestdao().addMockTest(mock)
     }
 
 
