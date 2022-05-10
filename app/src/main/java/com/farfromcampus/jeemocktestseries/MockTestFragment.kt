@@ -154,10 +154,10 @@ class MockTestFragment : Fragment() {
             binding.QuestionImage.isVisible = false
         }
 
-        OptionAView.text = "A. " + test.Set[i].option[0]
-        OptionBView.text = "B. " + test.Set[i].option[1]
-        OptionCView.text = "C. " + test.Set[i].option[2]
-        OptionDView.text = "D. " + test.Set[i].option[3]
+        OptionAView.text =  test.Set[i].option[0]
+        OptionBView.text =  test.Set[i].option[1]
+        OptionCView.text =  test.Set[i].option[2]
+        OptionDView.text =  test.Set[i].option[3]
         //Added for height correcption
 //            OptionA.height = OptionAView.height
 //            OptionB.height = OptionBView.height
