@@ -9,8 +9,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-//import com.farfromcampus.jeemocktestseries.ViewModels.TestViewmodel
-//import com.farfromcampus.jeemocktestseries.ViewModels.TestViewmodelFactory
 import com.farfromcampus.jeemocktestseries.daos.Mocktestdao
 import com.farfromcampus.jeemocktestseries.daos.Questiondao
 import com.farfromcampus.jeemocktestseries.databinding.FragmentMockReviewBinding
@@ -114,13 +112,24 @@ class MockReviewFragment : Fragment() {
         val a = physics.size
         val b = chemistry.size
         val c = maths.size
-        if(physics.isNotEmpty()) {
-            test.subject[0] = physics[0]
-            test.subject[1] = chemistry[0]
-            test.subject[2] = maths[0]
-        }
+
+        if(physics.isNotEmpty())test.subject[0] = physics.get(0)
+        if(chemistry.isNotEmpty())test.subject[1] = chemistry.get(0)
+        if(maths.isNotEmpty())test.subject[2] = maths.get(0)
+
 
         Ques.text = "${a+b+c} Questions"
         details.text = "$a Questions of Physics\n${c} Questions of Mathematics\n${b} Questions of Chemistry\n" + "Time- 3Hr"
+
+            binding.instructions.text = " Instructions\n" +
+                    "The quizzes consists of questions carefully designed to help you self-assess your comprehension of the information presented on the topics covered in the module. No data will be collected on the website regarding your responses or how many times you take the quiz.\n" +
+                    "\n" +
+                    "Each question in the quiz is of multiple-choice or \"true or false\" format. Read each question carefully, and click on the button next to your response that is based on the information covered on the topic in the module. Each correct or incorrect response will result in appropriate feedback immediately at the bottom of the screen.\n" +
+                    "\n" +
+                    "After responding to a question, click on the \"Next Question\" button at the bottom to go to the next questino. After responding to all Question, click on \"Submit\" on the top of the window to exit the quiz.\n" +
+                    "\n" +
+                    "There is Negative marking for Incorrect Option\n" +
+                    "\n" +
+                    "The total score for the quiz is based on your responses to all questions.your test score will reflect it appropriately."
     }
 }

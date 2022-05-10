@@ -24,20 +24,16 @@ class Tests_Adapter(val mocktests:ArrayList<Mocktest>):RecyclerView.Adapter<Test
     }
     override fun onBindViewHolder(holder: TestsViewHolder, position: Int) {
         holder.TestName.text = mocktests[position].name
-        holder.TestNumber.text = "Test Number ${mocktests[position].test_number.toString()}"
+        holder.TestNumber.text = "Test Number: " + mocktests[position].test_number.toString()
         if (mocktests[position].testtype.isEmpty()) {
-            holder.TestType.text = "All Subject"
+            holder.TestType.text = "Type/Length: " + mocktests[position].testtype + " & " + mocktests[position].ques_ids.size + " Questions"
         } else {
-            holder.TestType.text = mocktests[position].testtype
+            holder.TestType.text = "Type/Length: " + "All Subject" + " & " + mocktests[position].ques_ids.size + " Questions"
         }
         holder.TestTime.text = "Time :- ${mocktests[position].time.toString()} Hr"
 
         holder.start.setOnClickListener { v->
-
             v.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMockreviewFragment(mocktests[position].mock_id))
-//            val intent1 = Intent(v.context , ockreviewActivity::class.java)
-//            intent1.putExtra("mock_id",mocktests[position].mock_id)
-//            v.context.startActivity(intent1)
         }
     }
 }
